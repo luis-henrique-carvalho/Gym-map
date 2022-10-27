@@ -1,0 +1,16 @@
+.detail_item {
+  padding: 1.3rem;
+  border-radius: 2rem;
+  border: 1px solid transparent;
+  /* transition: ; */
+}
+
+.detail_item:hover {
+  border-color: black;
+  background: transparent;
+}
+
+.detail_item h3 {
+  margin:  1.2rem 0 0rem;
+  color: var(--color-grey-2);
+}

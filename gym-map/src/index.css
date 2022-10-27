@@ -3,6 +3,9 @@
   --color-grey: #edf3f6;
   --color-white: #fff;
   --color-black: #000;
+  --color-grey-1:#aaa;
+  --color-grey-2:#ccc;
+
 }
 body {
   background-color: var(--color-bg);
@@ -57,7 +60,7 @@ label span {
 }
 
 input,
-textarea {
+textarea, select {
   box-sizing: border-box;
   border: none;
   border-bottom: 1px solid #ccc;

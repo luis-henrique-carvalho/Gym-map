@@ -20,6 +20,8 @@ const CreateGym = () => {
 
   const navigate = useNavigate();
 
+  console.log(user.category)
+
   const checkCep = (e) => {
     setCep(e.target.value.replace(/\D/g, ""))
     console.log(e)

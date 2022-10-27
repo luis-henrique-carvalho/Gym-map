@@ -12,6 +12,7 @@ import Login from "./pages/Login";
 import Cadastro from "./pages/Cadastro";
 import Footer from "./components/Footer";
 import About from "./pages/About";
+import MyGyms from './pages/MyGyms'
 
 import { AuthProvider } from "./context/AuthContext";
 import CreateGym from "./pages/CreateGym";
@@ -57,10 +58,10 @@ function App() {
                 path="/gym/create"
                 element={user ? <CreateGym /> : <Navigate to={"/login"} />}
               />
-              {/* <Route
+              <Route
                 path="mygyns"
-                element={user ? <CreateGym /> : <Navigate to={"/login"} />}
-              /> */}
+                element={user ? <MyGyms/> : <Navigate to={"/login"} />}
+              />
               <Route path="/about" element={<About />} />
             </Routes>
           </div>

@@ -8,7 +8,7 @@ const Cadastro = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setconfirmPassword] = useState("");
   const [error, setError] = useState("");
-  const [category, setCategory] = useState("")
+  const [category, setCategory] = useState("Selecione uma categoria");
 
   const { createUser, error: authError, loading } = useAuthentication();
 
@@ -16,13 +16,12 @@ const Cadastro = () => {
     e.preventDefault();
 
     setError("");
-    console.log(category)
+    console.log(category);
 
     const user = {
       displayName,
       email,
-      password,
-      category
+      password
     };
 
     if (password !== confirmPassword) {
@@ -30,12 +29,13 @@ const Cadastro = () => {
       return;
     }
 
-    if (!category && "Selecione uma categoria" || "") {
-      setError("Adicione uma categoria")
-      return
+    if (category === "Selecione uma categoria") {
+      setError("Adicione uma categoria");
+      setCategory("Selecione uma categoria");
+      return;
     }
 
-    // const res = await createUser(user);
+    const res = await createUser(user);
 
     console.log(user);
   };
@@ -99,10 +99,15 @@ const Cadastro = () => {
 
         <label>
           <span>Usuario ou Empresa:</span>
-          <select name="category" onChange={(e) => setCategory(e.target.value)} >
-          <option value="">Selecione uma categoria</option>
-            <option value="Usuário">Usuário</option>
-            <option value="Empresa">Empresa</option>
+          <select
+            name="category"
+            onChange={(e) => {
+              setCategory(e.target.value);
+            }}
+          >
+            <option>Selecione uma categoria</option>
+            <option>Usuário</option>
+            <option>Empresa</option>
           </select>
         </label>
         {!loading && <button className="btn">Cadastrar</button>}
