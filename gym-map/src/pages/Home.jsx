@@ -4,6 +4,7 @@ import foto from "../assets/foto_home.svg";
 import { Link, Navigate } from "react-router-dom";
 import { useFetchGym } from "../hooks/useFetchGym";
 import GymDetail from "../components/GymDetail";
+import MapPage from "../components/MapPage";
 
 const Home = () => {
   const { documents: gyms, loading } = useFetchGym("academias");
@@ -21,6 +22,8 @@ const Home = () => {
       <div className="gym__container">
         {gyms && gyms.map((gym) => <GymDetail key={gym.id} gym={gym} />)}
       </div>
+
+    <MapPage/>
     </div>
   );
 };
