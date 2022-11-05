@@ -63,7 +63,7 @@ const CreateGym = () => {
       price,
     });
 
-    navigate("/mygyns");
+    navigate("/");
   };
 
   return (

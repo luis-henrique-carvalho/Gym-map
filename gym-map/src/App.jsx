@@ -16,6 +16,7 @@ import MyGyms from './pages/MyGyms'
 
 import { AuthProvider } from "./context/AuthContext";
 import CreateGym from "./pages/CreateGym";
+import Gym from "./pages/Gym";
 
 function App() {
   const [user, setUser] = useState(undefined);
@@ -42,6 +43,7 @@ function App() {
           <div className="container">
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="gym/:id" element={<Gym/>} />
               <Route
                 path="/login"
                 element={!user ? <Login /> : <Navigate to={"/"} />}

@@ -6,13 +6,10 @@
   margin-top: 2rem; 
 }
 
-.home_container img{
-  display: inline-block;
-  width: 50%;
-}
 
 .gym__container {
   display: grid;
   grid-template-columns: repeat(3,1fr);
   gap: 2.5rem;
 }
+

@@ -5,6 +5,10 @@
   /* transition: ; */
 }
 
+.detail_item h2 {
+  text-align: center;
+}
+
 .detail_item:hover {
   border-color: black;
   background: transparent;
