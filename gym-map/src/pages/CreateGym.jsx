@@ -3,16 +3,18 @@ import { useNavigate } from "react-router-dom";
 import { useAuthValue } from "../context/AuthContext";
 import { useInsertGym } from "../hooks/useInsertGym";
 
-import './createGym.css'
+import "./createGym.css";
 
 const CreateGym = () => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [cep, setCep] = useState("");
-  const [cidade, setCidade] = useState("")
+  const [cidade, setCidade] = useState("");
   const [rua, setRua] = useState("");
   const [bairro, setBairro] = useState("");
   const [uf, setUf] = useState("");
+  const [latitude, setLatitude] = useState();
+  const [longitude, setLongitude] = useState();
 
   const [formError, setFormError] = useState("");
   const { user } = useAuthValue();
@@ -20,30 +22,28 @@ const CreateGym = () => {
 
   const navigate = useNavigate();
 
-  console.log(user.category)
+  console.log(user.category);
 
   const checkCep = (e) => {
-    setCep(e.target.value.replace(/\D/g, ""))
-    console.log(e)
+    setCep(e.target.value.replace(/\D/g, ""));
+    console.log(e);
 
     fetch(`https://viacep.com.br/ws/${cep}/json/`)
-      .then(res => res.json())
-      .then(data => {
-        console.log(data)
-        setUf(data.uf)
-        setBairro(data.bairro)
-        setCidade(data.localidade)
-        setRua(data.logradouro)
-
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setUf(data.uf);
+        setBairro(data.bairro);
+        setCidade(data.localidade);
+        setRua(data.logradouro);
       });
-
-  }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setFormError("");
     console.log(e);
-    console.log(cep)
+    console.log(cep);
 
     if (!name || !price) {
       setFormError("Por favor, preencha todos os campos");
@@ -59,6 +59,8 @@ const CreateGym = () => {
       bairro,
       uf,
       uid: user.uid,
+      latitude,
+      longitude,
       createdBy: user.displayName,
       price,
     });
@@ -140,6 +142,30 @@ const CreateGym = () => {
             placeholder="Digite seu bairro"
             onChange={(e) => setBairro(e.target.value)}
             value={bairro}
+          />
+        </label>
+
+        <label>
+          <span>Latitude :</span>
+          <input
+            type="text"
+            name="bairro"
+            required
+            placeholder="Digite sua latitude"
+            onChange={(e) => setLatitude(e.target.value)}
+            value={latitude}
+          />
+        </label>
+
+        <label>
+          <span>Longitude :</span>
+          <input
+            type="text"
+            name="bairro"
+            required
+            placeholder="Digite sua longitude"
+            onChange={(e) => setLongitude(e.target.value)}
+            value={longitude}
           />
         </label>
 

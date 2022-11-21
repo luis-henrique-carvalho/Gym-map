@@ -7,7 +7,7 @@ import { useAuthentication } from "./hooks/useAuthentication";
 
 //Pages
 import Navbar from "./components/Navbar";
-import Home from "./pages/Home";
+import Home from "./pages/Home.jsx";
 import Login from "./pages/Login";
 import Cadastro from "./pages/Cadastro";
 import Footer from "./components/Footer";
@@ -17,6 +17,8 @@ import MyGyms from './pages/MyGyms'
 import { AuthProvider } from "./context/AuthContext";
 import CreateGym from "./pages/CreateGym";
 import Gym from "./pages/Gym";
+
+export const REACT_APP_GOOGLE_API_KEY = "AIzaSyAGRiv9DWRr-rtJ_ZCzVa2-E-tzrE9QnzA";
 
 function App() {
   const [user, setUser] = useState(undefined);

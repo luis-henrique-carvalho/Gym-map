@@ -24,17 +24,14 @@ const MyGyms = () => {
       <h2>Suas Academias</h2>
       <p>Gerencie os Suas Academias</p>
       {gyms && gyms.length === 0 ? (
-        <div>
+        <div className="no_gym">
           <p>Não foram encontradas academias</p>
           <Link to={"/gym/create"} className="btn">
             Adicionar sua academias
           </Link>
         </div>
       ) : (
-        <div className="">
-          <span>Título</span>
-          <span>Ações</span>
-        </div>
+        <></>
       )}
 
       {gyms &&

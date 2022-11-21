@@ -1,6 +1,4 @@
 import React from "react";
-import { useState,  useMemo, useCallback } from "react";
-
 import {
   GoogleMap,
   Marker,
@@ -12,39 +10,47 @@ import {
 import { REACT_APP_GOOGLE_API_KEY } from "../App";
 import "./MapPage.css";
 
+export interface MapPageProps {}
+
 const MapPage = () => {
-  const [map, setMap] = useState(null);
-  const [searchBoxA, setSearchBoxA] = useState(null);
-  const [searchBoxB, setSearchBoxB] = useState(null);
-  const [pointA, setPointA] = useState(null);
-  const [pointB, setPointB] = useState(null);
+  const [map, setMap] = React.useState<google.maps.Map>();
+  const [searchBoxA, setSearchBoxA] =
+    React.useState<google.maps.places.SearchBox>();
+  const [searchBoxB, setSearchBoxB] =
+    React.useState<google.maps.places.SearchBox>();
+  const [pointA, setPointA] = React.useState<google.maps.LatLngLiteral>();
+  const [pointB, setPointB] = React.useState<google.maps.LatLngLiteral>();
 
-  const [origin, setOrigin] = useState(null);
-  const [destination, setDestination] = useState(null);
+  const [origin, setOrigin] = React.useState<google.maps.LatLngLiteral | null>(
+    null
+  );
+  const [destination, setDestination] =
+    React.useState<google.maps.LatLngLiteral | null>(null);
 
-  const [response, setResponse] = useState(null);
+  const [response, setResponse] =
+    React.useState<google.maps.DistanceMatrixResponse | null>(null);
 
   const position = {
     lat: -27.590824,
     lng: -48.551262,
   };
 
-  const onMapLoad = (map) => {
+  const onMapLoad = (map: google.maps.Map) => {
     setMap(map);
   };
 
-  const onLoadA = (ref) => {
+  const onLoadA = (ref: google.maps.places.SearchBox) => {
     setSearchBoxA(ref);
   };
 
-  const onLoadB = (ref) => {
+  const onLoadB = (ref: google.maps.places.SearchBox) => {
     setSearchBoxB(ref);
   };
 
   const onPlacesChangedA = () => {
-    const places = searchBoxA.getPlaces();
+    const places = searchBoxA!.getPlaces();
     console.log(places);
-    const place = places[0];
+    const place = places![0];
     const location = {
       lat: place?.geometry?.location?.lat() || 0,
       lng: place?.geometry?.location?.lng() || 0,
@@ -57,9 +63,9 @@ const MapPage = () => {
   };
 
   const onPlacesChangedB = () => {
-    const places = searchBoxB.getPlaces();
+    const places = searchBoxB!.getPlaces();
     console.log(places);
-    const place = places[0];
+    const place = places![0];
     const location = {
       lat: place?.geometry?.location?.lat() || 0,
       lng: place?.geometry?.location?.lng() || 0,
@@ -80,7 +86,7 @@ const MapPage = () => {
 
   const directionsServiceOptions =
     // @ts-ignore
-    useMemo(() => {
+    React.useMemo<google.maps.DirectionsRequest>(() => {
       return {
         origin,
         destination,
@@ -88,7 +94,7 @@ const MapPage = () => {
       };
     }, [origin, destination]);
 
-  const directionsCallback = useCallback((res) => {
+  const directionsCallback = React.useCallback((res) => {
     if (res !== null && res.status === "OK") {
       setResponse(res);
     } else {
@@ -96,7 +102,7 @@ const MapPage = () => {
     }
   }, []);
 
-  const directionsRendererOptions = useMemo(() => {
+  const directionsRendererOptions = React.useMemo<any>(() => {
     return {
       directions: response,
     };
@@ -155,3 +161,4 @@ const MapPage = () => {
   );
 };
 
+export default MapPage;
