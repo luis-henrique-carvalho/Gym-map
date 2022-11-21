@@ -8,9 +8,11 @@ import {
   getLocationLocalStorage,
   setLocationLocalStorage,
 } from "../context/util";
+import { useAuthentication } from "../hooks/useAuthentication";
 
 const Home = () => {
   const { documents: gyms, loading } = useFetchGym("academias");
+  const { user } = useAuthentication();
   const [myLocation, setMyLocation] = useState();
   const [lat, setLat] = useState(null);
   const [long, setLong] = useState(null);
@@ -21,7 +23,7 @@ const Home = () => {
     if (myLocation) {
       setMyLocation(myLocation);
     }
-  }, []);
+  }, [user]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

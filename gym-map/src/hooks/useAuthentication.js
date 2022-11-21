@@ -7,6 +7,7 @@ import {
   updateProfile,
   signOut,
 } from "firebase/auth";
+import { setLocationLocalStorage } from "../context/util";
 
 import { useState, useEffect } from "react";
 
@@ -37,7 +38,7 @@ export const useAuthentication = () => {
       const { user } = await createUserWithEmailAndPassword(
         auth,
         data.email,
-        data.password,
+        data.password
       );
 
       await updateProfile(user, {
@@ -69,6 +70,7 @@ export const useAuthentication = () => {
   const logout = () => {
     checkIfIsCancelled();
     signOut(auth);
+    setLocationLocalStorage(null);
   };
 
   // Login
