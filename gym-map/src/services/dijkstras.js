@@ -1,9 +1,4 @@
-/**
- * Basic priority queue implementation. If a better priority queue is wanted/needed,
- * this code works with the implementation in google's closure library (https://code.google.com/p/closure-library/).
- * Use goog.require('goog.structs.PriorityQueue'); and new goog.structs.PriorityQueue()
- */
-export const algoritmo = () => {
+export const algoritmo = (vertice) => {
   function PriorityQueue() {
     this._nodes = [];
 
@@ -24,9 +19,6 @@ export const algoritmo = () => {
     };
   }
 
-  /**
-   * Pathfinding starts here
-   */
   function Graph() {
     var INFINITY = 1 / 0;
     this.vertices = {};
@@ -93,15 +85,20 @@ export const algoritmo = () => {
 
   var g = new Graph();
 
-  g.addVertex("A", { B: 7, C: 8 });
-  g.addVertex("B", { A: 7, F: 2 });
-  g.addVertex("C", { A: 8, F: 6, G: 4 });
-  g.addVertex("D", { F: 8 });
-  g.addVertex("E", { H: 1 });
-  g.addVertex("F", { B: 2, C: 6, D: 8, G: 9, H: 3 });
-  g.addVertex("G", { C: 4, F: 9 });
-  g.addVertex("H", { E: 1, F: 3 });
+  g.addVertex("A", { B: 2.8, C: 2.9 });
+  g.addVertex("B", { A: 2.8, C: 1.7, E: 1.6 });
+  g.addVertex("C", { A: 2.9, B: 1.5, D: 0.26 });
+  g.addVertex("D", { C: 0.26, E: 0.29 });
+  g.addVertex("E", { D: 0.29, B: 1.6 });
 
-  // Log test, with the addition of reversing the path and prepending the first node so it's more readable
+  // g.addVertex("A", { B: 7, C: 8 });
+  // g.addVertex("B", { A: 7, F: 2 });
+  // g.addVertex("C", { A: 8, F: 6, G: 4 });
+  // g.addVertex("D", { F: 8 });
+  // g.addVertex("E", { H: 1 });
+  // g.addVertex("F", { B: 2, C: 6, D: 8, G: 9, H: 3 });
+  // g.addVertex("G", { C: 4, F: 9 });
+  // g.addVertex("H", { E: 1, F: 3 });
+
   console.log(g.shortestPath("A", "H").concat(["A"]).reverse());
 };

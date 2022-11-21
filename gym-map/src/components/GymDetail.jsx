@@ -4,7 +4,10 @@ import { getDistance, getPreciseDistance, GetCurrent } from "geolib";
 import "./gymDetail.css";
 import { useState, useEffect } from "react";
 
+
 const GymDetail = ({ gym, myLocation, Click = null }) => {
+  
+
   const [distancia, setDistancia] = useState(null);
   useEffect(() => {
     if (myLocation) {
@@ -15,22 +18,31 @@ const GymDetail = ({ gym, myLocation, Click = null }) => {
       );
       setDistancia(newDistancia);
     }
-    console.log(distancia);
   }, [distancia, myLocation, gym]);
-  console.log(distancia);
+
+ 
 
   return (
     <div className="detail_item">
       <h2>{gym.name}</h2>
       <h3>
-        Valor da Mensalidade:<span> R$ {gym.price}</span>
+        Valor da Mensalidade:<span className="span_home"> R$ {gym.price}</span>
       </h3>
       <p>
         Endereço: {gym.rua} {gym.bairro} {gym.cidade}-{gym.uf}
       </p>
-      {distancia ? <p>Distância ate você: {distancia / 1000} KM</p> : <></>}
+      <div className="btn_home">
+        {distancia ? (
+          <h3>
+            Distância ate você:{" "}
+            <span className="span_home">{distancia / 1000} KM</span>
+          </h3>
+        ) : (
+          <></>
+        )}
+      </div>
 
-      <Link to={`/gym/${gym.id}`} className={"btn btn-outline"}>
+      <Link to={`/gym/${gym.id}`} className={"btn btn-outline btn_home"}>
         Detalhes
       </Link>
       {Click && (

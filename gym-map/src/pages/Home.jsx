@@ -1,11 +1,7 @@
 import React from "react";
 import "./home.css";
-import foto from "../assets/foto_home.svg";
-import { Link, Navigate } from "react-router-dom";
 import { useFetchGym } from "../hooks/useFetchGym";
 import GymDetail from "../components/GymDetail";
-import { useLocation } from "react-router-dom";
-import { getDistance, getPreciseDistance } from "geolib";
 import { useState } from "react";
 import { useEffect } from "react";
 import {

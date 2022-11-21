@@ -18,3 +18,12 @@
   margin:  1.2rem 0 0rem;
   color: var(--color-grey-2);
 }
+
+.btn_home {
+  margin-bottom: 1rem;
+}
+
+.span_home{
+  color: black;
+  font-weight:900;
+}
